@@ -29,7 +29,13 @@ connectDB();
 const app = express();
 
 // Middlewares
-app.use(cors());
+// Configure CORS for frontend domain
+app.use(cors({
+  origin: ['https://uditportfolio-six.vercel.app', 'http://localhost:3000'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Routes
