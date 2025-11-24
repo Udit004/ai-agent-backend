@@ -1,12 +1,12 @@
 services:
   - type: web
     name: agentic-ai-backend
-    runtime: docker
+    runtime: node
     plan: free
     region: singapore
     branch: main
-    dockerfilePath: ./Dockerfile
-    dockerContext: ./
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
