@@ -57,6 +57,13 @@ app.get("/health", (req, res) => {
 
 // Start Server - Use dynamic PORT for cloud platforms
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+
+// Only start server if not in Vercel (Vercel handles this automatically)
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel serverless
+export default app;
